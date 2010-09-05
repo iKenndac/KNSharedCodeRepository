@@ -16,6 +16,7 @@
 
 -(BOOL)isOnTheSameDayAsDate:(NSDate *)date;
 -(NSDate *)dateWithDayDelta:(NSInteger)daysBeforeOrAfter atHour:(NSUInteger)hour minute:(NSUInteger)minute second:(NSUInteger)second;
+-(BOOL)isBetweenStartDate:(NSDate *)startDate endDate:(NSDate *)endDate;
 -(BOOL)isToday;
 -(BOOL)isYesterday;
 -(BOOL)isTomorrow;

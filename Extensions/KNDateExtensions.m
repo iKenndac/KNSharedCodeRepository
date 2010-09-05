@@ -41,6 +41,22 @@
 	return [calendar dateFromComponents:comps];
 }
 
+-(BOOL)isBetweenStartDate:(NSDate *)startDate endDate:(NSDate *)endDate {
+
+	if (startDate == nil || endDate == nil) {
+		return NO;
+	}
+	
+	NSDate *start = [startDate earlierDate:endDate];
+	NSDate *end = [endDate laterDate:startDate];
+	
+	NSTimeInterval thisInterval = [self timeIntervalSinceReferenceDate];
+	
+	return (thisInterval >= [start timeIntervalSinceReferenceDate] &&
+			thisInterval <= [end timeIntervalSinceReferenceDate]);
+	
+}
+
 -(BOOL)isToday {
 	
 	return [self isOnTheSameDayAsDate:[NSDate date]];	
