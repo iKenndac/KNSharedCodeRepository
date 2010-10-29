@@ -8,6 +8,19 @@
 
 #import "KNGradientExtensions.h"
 
+#if __MAC_OS_X_VERSION_MIN_REQUIRED < 1050
+
+@implementation _CTGradient (KNGradientExtensions)
+
+-(_CTGradient *)initWithStartingColor:(NSColor *)start endingColor:(NSColor *)end {
+	return [[_CTGradient gradientWithBeginningColor:start endingColor:end] retain];
+}
+
+@end
+
+#endif
+
+#if __MAC_OS_X_VERSION_MIN_REQUIRED >= 1050
 
 @implementation NSGradient (KNGradientExtensions)
 
@@ -102,3 +115,5 @@
 }
 
 @end
+
+#endif

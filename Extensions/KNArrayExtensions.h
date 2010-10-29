@@ -6,7 +6,7 @@
 //  Copyright 2008 KennettNet Software Limited. All rights reserved.
 //
 
-#import <Cocoa/Cocoa.h>
+#import <Foundation/Foundation.h>
 
 
 @interface NSArray (KNArrayExtensions) 
