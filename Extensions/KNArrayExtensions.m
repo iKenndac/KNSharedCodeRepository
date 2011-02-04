@@ -57,9 +57,9 @@
 	
 	srandom(time(NULL));
 	
-    long long index = random() % [self count];
+	unsigned long long index = random() % [self count];
 	
-	if (index >= 0 && index <= ([self count] - 1)) {
+	if (index <= ([self count] - 1)) {
 		return [self objectAtIndex:index];
 	} else {
 		return nil;

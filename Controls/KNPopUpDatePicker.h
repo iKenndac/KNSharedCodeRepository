@@ -9,7 +9,7 @@
 #import <Cocoa/Cocoa.h>
 #import "MAAttachedWindow.h"
 
-@interface KNPopUpDatePicker : NSDatePicker {
+@interface KNPopUpDatePicker : NSDatePicker <NSDatePickerCellDelegate> {
 
 	MAAttachedWindow *attachedWindow;
 	NSDatePicker *graphicalPicker;	

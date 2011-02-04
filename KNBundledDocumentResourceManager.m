@@ -78,7 +78,7 @@ static NSString * const kPropertiesFileName = @"properties.plist";
 	
 	// Designated initialser 
 	
-	if (self = [super init]) {
+	if ((self = [super init])) {
 		transientResources = [[NSMutableDictionary alloc] init];
 		removedResources = [[NSMutableDictionary alloc] init];
 		properties = [[NSMutableDictionary alloc] init];
@@ -91,7 +91,7 @@ static NSString * const kPropertiesFileName = @"properties.plist";
 
 -(id)initWithDocumentBundle:(NSBundle *)bundle {
 	
-	if (self = [self init]) {
+	if ((self = [self init])) {
 		[self setDocumentBundle:bundle];
 	}
 	return self;
@@ -121,7 +121,7 @@ static NSString * const kPropertiesFileName = @"properties.plist";
 		return [path stringByAppendingPathComponent:fileName];
 	} else {
 		
-		while (!fileNameAvailable) {
+		while ((!fileNameAvailable)) {
 			
 			NSString *newName = [NSString stringWithFormat:@"%@ %d.%@", [fileName stringByDeletingPathExtension], uNum, [fileName pathExtension]];
 			

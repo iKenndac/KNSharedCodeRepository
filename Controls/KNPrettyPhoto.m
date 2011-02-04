@@ -176,7 +176,7 @@
 			}
 			_animation = [[NSAnimation alloc] initWithDuration:0.15 animationCurve:NSAnimationLinear];
 			
-			[_animation setDelegate:self];
+			[_animation setDelegate:(id <NSAnimationDelegate>)self];
 			[_animation setAnimationBlockingMode:NSAnimationNonblockingThreaded];
 			
 			float i;
