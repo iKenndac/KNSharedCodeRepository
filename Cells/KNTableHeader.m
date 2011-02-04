@@ -13,7 +13,7 @@
 
 -(id)initWithTitle:(NSString *)tit alignment:(NSTextAlignment)align drawSeparators:(BOOL)draws canBeClicked:(BOOL)clickable {
 	
-	if (self = [super init]) {
+	if ((self = [super init])) {
 		
 		[self setObjectValue:tit];
 		[self setTitle:tit];

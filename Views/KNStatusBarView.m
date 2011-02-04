@@ -83,7 +83,7 @@
 	SInt32 version = 0;
 	Gestalt( gestaltSystemVersionMinor, &version );
 	
-	NSRect frame = [self frame];
+	NSRect frame = [self bounds];
 	
 	if ([[self window] isMainWindow]) {
 		

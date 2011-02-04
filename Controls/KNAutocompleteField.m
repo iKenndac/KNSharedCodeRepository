@@ -89,7 +89,7 @@ willChangeSelectionFromCharacterRange:(NSRange)oldSelectedCharRange toCharacterR
 	NSEnumerator *e = [[self autoCompleteItems] objectEnumerator];
 	NSString *item;
 	
-	while (item = [e nextObject]) {
+	while ((item = [e nextObject])) {
 		
 		if ([item length] >= charRange.length) {
 			
