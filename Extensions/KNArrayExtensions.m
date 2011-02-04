@@ -19,7 +19,7 @@
 	NSEnumerator *e = [self objectEnumerator];
 	id item;
 	
-	while (item = [e nextObject]) {
+	while ((item = [e nextObject])) {
 		
 		if (![src containsObject:item]) {
 			[array addObject:item];
@@ -57,7 +57,7 @@
 	
 	srandom(time(NULL));
 	
-	unsigned long long index = random() % [self count];
+    long long index = random() % [self count];
 	
 	if (index >= 0 && index <= ([self count] - 1)) {
 		return [self objectAtIndex:index];

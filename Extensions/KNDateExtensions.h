@@ -21,4 +21,7 @@
 -(BOOL)isYesterday;
 -(BOOL)isTomorrow;
 
+-(NSDate *)utcRepresentationFromSystemTimeZone;
+-(NSDate *)systemRepresentationFromUTCTimeZone;
+
 @end

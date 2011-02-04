@@ -19,13 +19,71 @@
     return self;
 }
 
+- (void)viewDidMoveToWindow {
+    
+    if ([self window]) {
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(windowDidChangeKey:)
+                                                     name:NSWindowDidBecomeKeyNotification
+                                                   object:[self window]];
+        
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(windowDidChangeKey:)
+                                                     name:NSWindowDidBecomeMainNotification
+                                                   object:[self window]];
+        
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(windowDidChangeKey:)
+                                                     name:NSWindowDidBecomeKeyNotification
+                                                   object:[self window]];
+        
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(windowDidChangeKey:)
+                                                     name:NSWindowDidResignKeyNotification
+                                                   object:[self window]];
+        
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(windowDidChangeKey:)
+                                                     name:NSWindowDidResignMainNotification
+                                                   object:[self window]];
+    }
+    
+}
+
+- (void)viewWillMoveToWindow:(NSWindow *)newWindow {
+
+    if ([self window]) {
+        [[NSNotificationCenter defaultCenter] removeObserver:self
+                                                        name:NSWindowDidBecomeMainNotification
+                                                      object:[self window]];
+        
+        [[NSNotificationCenter defaultCenter] removeObserver:self
+                                                        name:NSWindowDidBecomeKeyNotification
+                                                      object:[self window]];
+
+        [[NSNotificationCenter defaultCenter] removeObserver:self
+                                                        name:NSWindowDidResignKeyNotification
+                                                      object:[self window]];
+
+        [[NSNotificationCenter defaultCenter] removeObserver:self
+                                                        name:NSWindowDidResignMainNotification
+                                                      object:[self window]];
+
+    }
+    
+} 
+
+-(void)windowDidChangeKey:(NSNotification *)not {
+    [self setNeedsDisplay:YES];
+}
+
 - (void)drawRect:(NSRect)rect {
     // Drawing code here.
 	
 	SInt32 version = 0;
 	Gestalt( gestaltSystemVersionMinor, &version );
 	
-	NSRect frame = [self frame];
+	NSRect frame = [self bounds];
 	
 	if ([[self window] isMainWindow]) {
 		

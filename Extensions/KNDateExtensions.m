@@ -28,7 +28,7 @@
 
 -(NSDate *)dateWithDayDelta:(NSInteger)daysBeforeOrAfter atHour:(NSUInteger)hour minute:(NSUInteger)minute second:(NSUInteger)second {
 
-	NSDate *date = [self addTimeInterval:(24 * 60 * 60) * daysBeforeOrAfter];
+    NSDate *date = [self addTimeInterval:(24 * 60 * 60) * daysBeforeOrAfter];
 	NSCalendar *calendar = [NSCalendar currentCalendar];
 	
 	NSDateComponents *comps = [calendar components:NSYearCalendarUnit | NSMonthCalendarUnit |  NSDayCalendarUnit | NSHourCalendarUnit | NSMinuteCalendarUnit | NSSecondCalendarUnit 
@@ -77,8 +77,30 @@
 	[calcDate autorelease];
 	
 	return [calcDate isToday];
-	
-	
+}
+
+-(NSDate *)utcRepresentationFromSystemTimeZone {
+    
+    NSTimeZone *sourceTimeZone = [NSTimeZone systemTimeZone];
+    NSTimeZone *destinationTimeZone = [NSTimeZone timeZoneWithAbbreviation:@"UTC"];
+    
+    NSInteger sourceGMTOffset = [sourceTimeZone secondsFromGMTForDate:self];
+    NSInteger destinationGMTOffset = [destinationTimeZone secondsFromGMTForDate:self];
+    NSTimeInterval interval = destinationGMTOffset - sourceGMTOffset;
+    
+    return [[[NSDate alloc] initWithTimeInterval:interval sinceDate:self] autorelease];    
+}
+
+-(NSDate *)systemRepresentationFromUTCTimeZone {
+    
+    NSTimeZone *sourceTimeZone = [NSTimeZone timeZoneWithAbbreviation:@"UTC"];
+    NSTimeZone *destinationTimeZone = [NSTimeZone systemTimeZone];
+    
+    NSInteger sourceGMTOffset = [sourceTimeZone secondsFromGMTForDate:self];
+    NSInteger destinationGMTOffset = [destinationTimeZone secondsFromGMTForDate:self];
+    NSTimeInterval interval = destinationGMTOffset - sourceGMTOffset;
+    
+    return [[[NSDate alloc] initWithTimeInterval:interval sinceDate:self] autorelease];    
 }
 
 @end

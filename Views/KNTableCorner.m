@@ -21,7 +21,7 @@
 	Gestalt( gestaltSystemVersionMinor, &version );
 	if (version >= 5) {
 		
-		if (self = [super init]) {
+		if ((self = [super init])) {
 			
 			showsRightEdge = shows;
 		}

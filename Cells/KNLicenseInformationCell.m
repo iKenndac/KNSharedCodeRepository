@@ -77,7 +77,7 @@
 	// The image box is 32x32, centered vertically in the cell.
 	// The left margin is equal to the top and bottom margins.
 	
-	NSSize imageSize = [[self itemIcon] size];
+	NSSize imageSize = NSMakeSize(32.0, 32.0);
 	
 	float margin = (frame.size.height - imageSize.height) / 2;
 	
