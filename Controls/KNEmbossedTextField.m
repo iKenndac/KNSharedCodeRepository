@@ -65,7 +65,10 @@
 	
 	[[self stringValue] drawInRect:NSOffsetRect(bounds, +2, 0) withAttributes:attributes];
 
+#if !__has_feature(objc_arc)
 	[para release];
+#endif
+	
 
 }
 

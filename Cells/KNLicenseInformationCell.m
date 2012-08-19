@@ -131,6 +131,9 @@
 -(NSDictionary *)majorTextAttributes {
     
     NSMutableParagraphStyle *paragraph = [[NSMutableParagraphStyle alloc] init];
+#if !__has_feature(objc_arc)
+	[paragraph autorelease];
+#endif
     [paragraph setLineBreakMode:NSLineBreakByTruncatingTail];
 
 	
@@ -139,13 +142,13 @@
                 
 		return [NSDictionary dictionaryWithObjectsAndKeys:[NSFont systemFontOfSize:13.0], NSFontAttributeName, 
 				[NSColor whiteColor], NSForegroundColorAttributeName,
-                [paragraph autorelease], NSParagraphStyleAttributeName, nil];
+                paragraph, NSParagraphStyleAttributeName, nil];
 		
 	} else {
     
 		return [NSDictionary dictionaryWithObjectsAndKeys:[NSFont systemFontOfSize:13.0], NSFontAttributeName, 
 				[NSColor blackColor], NSForegroundColorAttributeName, 
-                [paragraph autorelease], NSParagraphStyleAttributeName, nil];
+                paragraph, NSParagraphStyleAttributeName, nil];
 	}
 	
 }
@@ -155,19 +158,21 @@
 	
     NSMutableParagraphStyle *paragraph = [[NSMutableParagraphStyle alloc] init];
     [paragraph setLineBreakMode:NSLineBreakByTruncatingTail];
-    
-	
+#if !__has_feature(objc_arc)
+	[paragraph autorelease];
+#endif
+
     if ([self isHighlighted] || mouseDown) {
 		
 		return [NSDictionary dictionaryWithObjectsAndKeys:[NSFont systemFontOfSize:11.0], NSFontAttributeName, 
 				[NSColor whiteColor], NSForegroundColorAttributeName, 
-                [paragraph autorelease], NSParagraphStyleAttributeName,nil];
+                paragraph, NSParagraphStyleAttributeName,nil];
 		
 	} else {
 		
 		return [NSDictionary dictionaryWithObjectsAndKeys:[NSFont systemFontOfSize:11.0], NSFontAttributeName, 
                 [NSColor grayColor], NSForegroundColorAttributeName, 
-                [paragraph autorelease], NSParagraphStyleAttributeName,nil];
+                paragraph, NSParagraphStyleAttributeName,nil];
 	}
 	
 }

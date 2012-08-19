@@ -21,9 +21,12 @@
     for (i = 0; i < MD5_DIGEST_LENGTH; i++) {
 		[str appendFormat:@"%0.2x", *(digest + i)];
     }
-    
+
+#if !__has_feature(objc_arc)
     return [str autorelease];    
-    
+#else
+	return str;
+#endif
 }
 
 @end

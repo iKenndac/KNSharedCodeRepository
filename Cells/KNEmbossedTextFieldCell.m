@@ -25,12 +25,17 @@
 						  sh,NSShadowAttributeName,
 						  [self textColor],NSForegroundColorAttributeName,
 						  pSt,NSParagraphStyleAttributeName,nil];
+
+#if !__has_feature(objc_arc)
 	[sh release];
 	[pSt release];
+#endif
 	
 	NSAttributedString *string = [[NSAttributedString alloc] initWithString:[self stringValue] attributes:atts];
 	[self setAttributedStringValue:string];
+#if !__has_feature(objc_arc)
 	[string release];
+#endif
 	//[[self attributedStringValue] drawInRect:cellFrame];
 	[super drawInteriorWithFrame:cellFrame inView:controlView];
 }
