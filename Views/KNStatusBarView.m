@@ -70,8 +70,8 @@
                                                       object:[self window]];
 
     }
-    
-} 
+
+}
 
 -(void)windowDidChangeKey:(NSNotification *)not {
     [self setNeedsDisplay:YES];
@@ -79,31 +79,16 @@
 
 - (void)drawRect:(NSRect)rect {
     // Drawing code here.
-	
-	SInt32 version = 0;
-	Gestalt( gestaltSystemVersionMinor, &version );
-	
+
 	NSRect frame = [self bounds];
-	
-	if ([[self window] isMainWindow]) {
-		
-		
-		if (version >= 5) {
-			[[NSGradient unifiedPressedGradient] fillRect:frame angle:90];
-		} else {
-			[[NSGradient unifiedNormalGradient] fillRect:frame angle:90];
-		}
-	
-	} else {
-		if (version >= 5) {
-			[[NSGradient unifiedNormalGradient] fillRect:frame angle:90];
-		} else {
-			[[NSGradient unifiedSelectedGradient] fillRect:frame angle:90];
-		}
-	}
-		
+
+	if ([[self window] isMainWindow])
+		[[NSGradient unifiedPressedGradient] fillRect:frame angle:90];
+	else
+		[[NSGradient unifiedNormalGradient] fillRect:frame angle:90];
+
 	[[NSColor grayColor] set];
-	
+
 	//NSRect border = NSMakeRect(frame.origin.x, frame.origin.y, frame.size.width - 1, frame.size.height - 1);
 	
 	[NSBezierPath strokeLineFromPoint:NSMakePoint(-0.5, frame.size.height - 0.5) toPoint:NSMakePoint(frame.size.width + 1, frame.size.height - 0.5)];
